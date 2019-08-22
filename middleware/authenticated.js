@@ -1,5 +1,5 @@
 export default function({ store, redirect }) {
-  if (!store.getters["user/getUserStatus"]) {
+  if (!store.getters["user/userStatus"]) {
     return redirect("/");
   }
 }

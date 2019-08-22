@@ -4,14 +4,11 @@ export default {
   }),
   mutations: {
     SET_USER(state, user) {
-      state.user = user ? JSON.parse(user) : null;
+      state.user = user;
     }
   },
   getters: {
-    getUserStatus: state => !!state.user,
-    getUserName: (state, getters) => {
-      if (!getters.getUserStatus) return "";
-      return state.user.user_metadata.full_name;
-    }
+    userStatus: state => !!state.user,
+    user: state => JSON.parse(state.user)
   }
 };

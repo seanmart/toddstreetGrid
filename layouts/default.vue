@@ -31,7 +31,7 @@ html {
 }
 
 /* ========= GLOBAL STYLES ========= */
-#site {
+.site {
   animation: fade-in 0.25s backwards;
   animation-delay: 0.25s;
 }

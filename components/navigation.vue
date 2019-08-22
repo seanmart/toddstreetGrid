@@ -2,9 +2,9 @@
   <header id="header" class="header-height">
     <template v-if="isLoggedIn">
       <h3>{{ name }}</h3>
-      <button @click="action('logout')">Log Out</button>
+      <button @click="logout">Log Out</button>
     </template>
-    <button v-if="!isLoggedIn" @click="action('login')">Log In</button>
+    <button v-if="!isLoggedIn" @click="login">Log In</button>
   </header>
 </template>
 
@@ -13,35 +13,32 @@ const netlifyIdentity = require("netlify-identity-widget");
 import { mapGetters, mapState } from "vuex";
 export default {
   mounted() {
+    netlifyIdentity.init();
+
     this.$store.commit(
       "user/SET_USER",
-      window.localStorage.getItem("gotrue.user")
+      JSON.stringify(netlifyIdentity.currentUser())
     );
-
-    netlifyIdentity.init();
 
     netlifyIdentity.on("login", user => {
       netlifyIdentity.close();
-      this.$store.dispatch("user/UPDATE_USER", user);
+      this.$store.commit("user/SET_USER", JSON.stringify(user));
     });
   },
   computed: {
     ...mapGetters("user", {
-      isLoggedIn: "getUserStatus",
-      name: "getUserName"
-    })
+      isLoggedIn: "userStatus",
+      user: "user"
+    }),
+    name() {
+      return this.user ? this.user.user_metadata.full_name : "";
+    }
   },
   methods: {
-    action(action) {
-      switch (action) {
-        case "login":
-          netlifyIdentity.open("login");
-
-        case "logout":
-          netlifyIdentity.logout();
-          this.$store.dispatch("user/UPDATE_USER", null);
-          this.$router.push("/");
-      }
+    login: () => netlifyIdentity.open("login"),
+    logout() {
+      netlifyIdentity.logout();
+      this.$store.commit("user/SET_USER", null);
     }
   }
 };
