@@ -29,4 +29,13 @@ html {
   box-sizing: border-box;
   margin: 0;
 }
+
+/* ========= GLOBAL STYLES ========= */
+.header-height {
+  height: 80px;
+}
+
+.container {
+  padding-top: 80px;
+}
 </style>

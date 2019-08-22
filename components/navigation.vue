@@ -1,5 +1,5 @@
 <template lang="html">
-  <header id="header">
+  <header id="header" class="header-height">
     <button v-if="!isLoggedIn" @click="action('login')">Log In</button>
     <button v-if="isLoggedIn" @click="action('logout')">Log Out</button>
   </header>
@@ -22,8 +22,12 @@ export default {
       switch (action) {
         case "login":
           netlifyIdentity.open("login");
+          netlifyIdentity.on("login", user => {
+            this.$store.dispatch("user/UPDATE_USER", user);
+          });
         case "logout":
           netlifyIdentity.logout();
+          this.$store.dispatch("user/UPDATE_USER", null);
           this.$router.push("/");
       }
     }
@@ -34,7 +38,7 @@ export default {
 <style lang="css">
 
 #header{
-  padding:16px 20px;
+  padding: 0px 20px;
   position: fixed;
   top: 0px;
   left: 0px;
@@ -42,6 +46,7 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
+  align-items: center;
   background: white;
   border-bottom: 1px solid #ddd
 }
