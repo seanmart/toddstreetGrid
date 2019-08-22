@@ -12,7 +12,7 @@ export default {
   actions: {
     UPDATE_USER({ commit }, user) {
       commit("SET_USER", user);
-      user ? setToken(user.token) : unsetToken();
+      user ? setToken(user.token.access_token) : unsetToken();
     }
   },
   getters: {
