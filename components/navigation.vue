@@ -1,20 +1,29 @@
 <template lang="html">
   <header id="header" class="header-height">
+    <template v-if="isLoggedIn">
+      <h3>{{ name }}</h3>
+      <button @click="action('logout')">Log Out</button>
+    </template>
     <button v-if="!isLoggedIn" @click="action('login')">Log In</button>
-    <button v-if="isLoggedIn" @click="action('logout')">Log Out</button>
   </header>
 </template>
 
 <script>
 const netlifyIdentity = require("netlify-identity-widget");
-import { mapGetters } from "vuex";
+import { mapGetters, mapState } from "vuex";
 export default {
   mounted() {
     netlifyIdentity.init();
+
+    netlifyIdentity.on("login", user => {
+      netlifyIdentity.close();
+      this.$store.dispatch("user/UPDATE_USER", user);
+    });
   },
   computed: {
     ...mapGetters("user", {
-      isLoggedIn: "getUserStatus"
+      isLoggedIn: "getUserStatus",
+      name: "getUserFullName"
     })
   },
   methods: {
@@ -22,9 +31,7 @@ export default {
       switch (action) {
         case "login":
           netlifyIdentity.open("login");
-          netlifyIdentity.on("login", user => {
-            this.$store.dispatch("user/UPDATE_USER", user);
-          });
+
         case "logout":
           netlifyIdentity.logout();
           this.$store.dispatch("user/UPDATE_USER", null);
@@ -50,7 +57,9 @@ export default {
   background: white;
   border-bottom: 1px solid #ddd
 }
+
 #header button{
+  flex: 0 0 auto;
   background: white;
   border: 1px solid #ddd;
   padding: 14px 20px;
@@ -62,5 +71,11 @@ export default {
 
 #header button:active{
   transform: scale(.95)
+}
+
+#header h3{
+  font-size: 16px;
+  font-weight: lighter;
+  margin-right: 20px;
 }
 </style>

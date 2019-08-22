@@ -16,6 +16,10 @@ export default {
     }
   },
   getters: {
-    getUserStatus: state => !!state.user
+    getUserStatus: state => !!state.user,
+    getUserFullName: (state, getters) => {
+      if (!getters.getUserStatus) return "";
+      return state.user.user_metadata.full_name;
+    }
   }
 };
