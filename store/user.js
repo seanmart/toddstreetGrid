@@ -1,23 +1,15 @@
-import { setToken, unsetToken } from "@/utils/auth";
-
 export default {
   state: () => ({
     user: null
   }),
   mutations: {
     SET_USER(state, user) {
-      state.user = user || null;
-    }
-  },
-  actions: {
-    UPDATE_USER({ commit }, user) {
-      commit("SET_USER", user);
-      user ? setToken(user.token.access_token) : unsetToken();
+      state.user = user ? JSON.parse(user) : null;
     }
   },
   getters: {
     getUserStatus: state => !!state.user,
-    getUserFullName: (state, getters) => {
+    getUserName: (state, getters) => {
       if (!getters.getUserStatus) return "";
       return state.user.user_metadata.full_name;
     }

@@ -13,6 +13,11 @@ const netlifyIdentity = require("netlify-identity-widget");
 import { mapGetters, mapState } from "vuex";
 export default {
   mounted() {
+    this.$store.commit(
+      "user/SET_USER",
+      window.localStorage.getItem("gotrue.user")
+    );
+
     netlifyIdentity.init();
 
     netlifyIdentity.on("login", user => {
@@ -23,7 +28,7 @@ export default {
   computed: {
     ...mapGetters("user", {
       isLoggedIn: "getUserStatus",
-      name: "getUserFullName"
+      name: "getUserName"
     })
   },
   methods: {
