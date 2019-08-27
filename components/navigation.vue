@@ -23,6 +23,7 @@ export default {};
 }
 
 header{
+  animation: slide-down .5s backwards;
   position: fixed;
   top: 0px;
   left: 0px;
@@ -48,5 +49,10 @@ header{
 .button.logout{
   background: #03bbdc;
   color: white;
+}
+
+@keyframes slide-down{
+  from{transform: translateY(-100%)}
+  to{transform: translateY(0px)}
 }
 </style>
