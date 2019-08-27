@@ -1,5 +1,1 @@
-export default {
-  actions: {
-    nuxtServerInit({ commit }, { req }) {}
-  }
-};
+export default {};

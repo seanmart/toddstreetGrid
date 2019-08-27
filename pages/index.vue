@@ -1,12 +1,13 @@
-<template>
-  <div class="container"></div>
-</template>
-
 <script>
-import { mapGetters } from "vuex";
 export default {
-  auth: false
+  middleware: ({ store, redirect }) => {
+    redirect(store.state.auth.loggedIn ? "/dashboard" : "/login");
+  }
 };
 </script>
 
-<style></style>
+<style lang="css">
+#welcome{
+  background: #eee
+}
+</style>

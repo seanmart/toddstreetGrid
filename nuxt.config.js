@@ -3,9 +3,6 @@ export default {
   /*
    ** Headers of the page
    */
-  router: {
-    middleware: ["auth"]
-  },
   head: {
     title: process.env.npm_package_name || "",
     meta: [
@@ -38,12 +35,14 @@ export default {
   /*
    ** Nuxt.js modules
    */
+
   modules: ["@nuxtjs/axios", "@nuxtjs/auth"],
   auth: {
     watchLoggedIn: true,
     redirect: {
       callback: "/callback",
-      login: "/"
+      login: "/login",
+      home: "/dashboard"
     },
     strategies: {
       auth0: {

@@ -1,13 +1,17 @@
 <template>
-  <div id="site">
-    <navigation />
+  <div>
+    <navigation v-if="loggedIn" />
     <nuxt />
   </div>
 </template>
 <script>
 import navigation from "@/components/navigation";
+import { mapState } from "vuex";
 export default {
-  components: { navigation }
+  components: { navigation },
+  computed: {
+    ...mapState("auth", ["loggedIn"])
+  }
 };
 </script>
 <style>
@@ -30,13 +34,42 @@ html {
   margin: 0;
 }
 
-/* ========= GLOBAL STYLES ========= */
-
-.header-height {
-  height: 80px;
+.container {
+  max-width: 1200px;
+  padding: 20px;
+  margin: 0px auto;
 }
 
-.container {
-  padding-top: 80px;
+.container.fullwidth {
+  max-width: initial;
+}
+
+.container.fullheight {
+  min-height: 100vh;
+}
+
+.container.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button {
+  padding: 12px 16px;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: 600;
+  transition: transform 0.25s;
+}
+
+.button.big {
+  padding: 14px 24px;
+  font-size: 14px;
+}
+
+.button:active {
+  transform: scale(0.95);
 }
 </style>

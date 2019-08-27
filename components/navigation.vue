@@ -1,61 +1,52 @@
 <template lang="html">
-  <header id="header" class="header-height">
-    <template v-if="loggedIn">
-      <h3>{{ user.name }}</h3>
-      <button @click="$auth.logout()">Log Out</button>
-    </template>
-    <button v-if="!loggedIn" @click="$auth.loginWith('auth0')">Log In</button>
-  </header>
+  <div class="navigation-spacer">
+    <header>
+      <div class="container navigation-container">
+        <div class="left"></div>
+        <div class="right">
+          <button class="button logout" type="button" @click="$auth.logout()">
+            logout
+          </button>
+        </div>
+      </div>
+    </header>
+  </div>
 </template>
 
 <script>
-import { mapGetters, mapState } from "vuex";
-export default {
-  computed: {
-    ...mapState("auth", ["loggedIn", "user"])
-  },
-  methods: {
-    logout() {
-      this.$auth.logOut();
-    }
-  }
-};
+export default {};
 </script>
 
-<style lang="css">
+<style lang="css" scoped>
+.navigation-spacer, header{
+  height: 80px;
+}
 
-#header{
-  padding: 0px 20px;
+header{
   position: fixed;
   top: 0px;
   left: 0px;
   width: 100%;
+  border-bottom: 1px solid #eee;
+}
+
+.navigation-container{
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: flex-start;
   align-items: center;
-  background: white;
-  border-bottom: 1px solid #ddd
 }
 
-#header button{
+.left, .right{
   flex: 0 0 auto;
-  background: white;
-  border: 1px solid #ddd;
-  padding: 14px 20px;
-  color: #555;
-  outline: none;
-  border-radius: 5px;
-  transition: transform .25s
 }
 
-#header button:active{
-  transform: scale(.95)
+.right{
+  margin-left: auto;
 }
 
-#header h3{
-  font-size: 16px;
-  font-weight: lighter;
-  margin-right: 20px;
+.button.logout{
+  background: #03bbdc;
+  color: white;
 }
 </style>

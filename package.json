@@ -1,7 +1,7 @@
 {
-  "name": "toddstreet_grid_1",
+  "name": "certification-tool-v1",
   "version": "1.0.0",
-  "description": "My cat&#39;s pajamas Nuxt.js project",
+  "description": "My fantastic Nuxt.js project",
   "author": "Sean Metcalf",
   "private": true,
   "scripts": {
@@ -11,7 +11,7 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
-    "@nuxtjs/auth": "^4.7.0",
+    "@nuxtjs/auth": "^4.8.1",
     "@nuxtjs/axios": "^5.3.6",
     "nuxt": "^2.0.0"
   },

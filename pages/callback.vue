@@ -1,7 +1,5 @@
 <template lang="html">
-  <div class="container">
-    logging in...
-  </div>
+  <div class=""></div>
 </template>
 
 <script>

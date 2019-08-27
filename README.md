@@ -1,6 +1,6 @@
-# toddstreet_grid_1
+# certification-tool-v1
 
-> My cat&#39;s pajamas Nuxt.js project
+> My fantastic Nuxt.js project
 
 ## Build Setup
 
