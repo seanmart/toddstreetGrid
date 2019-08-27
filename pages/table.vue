@@ -4,11 +4,7 @@
   </div>
 </template>
 
-<script>
-export default {
-  middleware: "authenticated"
-};
-</script>
+<script></script>
 
 <style lang="css">
 .protected{

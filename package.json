@@ -11,10 +11,8 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
+    "@nuxtjs/auth": "^4.8.1",
     "@nuxtjs/axios": "^5.3.6",
-    "js-cookie": "^2.2.1",
-    "jwt-decode": "^2.2.0",
-    "netlify-identity-widget": "^1.5.5",
     "nuxt": "^2.0.0"
   },
   "devDependencies": {}

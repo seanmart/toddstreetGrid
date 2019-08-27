@@ -31,10 +31,6 @@ html {
 }
 
 /* ========= GLOBAL STYLES ========= */
-.site {
-  animation: fade-in 0.25s backwards;
-  animation-delay: 0.25s;
-}
 
 .header-height {
   height: 80px;
@@ -42,14 +38,5 @@ html {
 
 .container {
   padding-top: 80px;
-}
-
-@keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
 }
 </style>

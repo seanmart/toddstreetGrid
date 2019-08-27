@@ -1,8 +1,11 @@
 export default {
-  mode: "universal",
+  mode: "spa",
   /*
    ** Headers of the page
    */
+  router: {
+    middleware: ["auth"]
+  },
   head: {
     title: process.env.npm_package_name || "",
     meta: [
@@ -35,7 +38,21 @@ export default {
   /*
    ** Nuxt.js modules
    */
-  modules: ["@nuxtjs/axios"],
+  modules: ["@nuxtjs/axios", "@nuxtjs/auth"],
+  auth: {
+    watchLoggedIn: true,
+    redirect: {
+      callback: "/callback",
+      login: "/"
+    },
+    strategies: {
+      auth0: {
+        domain: "seanmart.auth0.com",
+        client_id: "uqMONaexzu050I2Yil720KBM3dPUzJNB",
+        audience: "https://seanmart.auth0.com/api/v2/"
+      }
+    }
+  },
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
